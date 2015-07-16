@@ -84,6 +84,17 @@ return [
 			'prefix'   => '',
 		],
 
+		'migration' => [
+			'driver'    => 'mysql',
+			'host'      => env('DB_HOST'),
+			'database'  => env('DB_DATABASE'),
+			'username'  => env('MIG_DB_USERNAME'),
+			'password'  => env('MIG_DB_PASSWORD'),
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix'    => '',
+			'strict'    => false,
+		]
 	],
 
 	/*

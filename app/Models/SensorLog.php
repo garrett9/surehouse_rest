@@ -10,4 +10,10 @@ use App\Models\Ardent;
  */
 class SensorLog extends Ardent {
 	
+	public $rules = [
+			'id' => 'required|integer|exists:sensors,id',
+			'timestamp' => 'required|date',
+			'value' => 'required|integer'
+	];
+	
 }

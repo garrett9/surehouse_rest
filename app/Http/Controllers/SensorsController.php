@@ -20,7 +20,7 @@ class SensorsController extends Controller {
 	 */
 	public function all()
 	{
-		$sensors = DB::table('gateways')->join('sensors', 'sensors.gateway', '=', 'gateways.id')->get();
+		$sensors = DB::table('gateways')->join('sensors', 'sensors.gateway', '=', 'gateways.id')->orderBy('sensors.display_name', 'ASC')->get();
 		if($sensors)
 			return self::ok(null, $sensors);
 		return self::no_content();

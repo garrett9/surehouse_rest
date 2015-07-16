@@ -47,7 +47,7 @@ class Reporter {
 		$this->sensorMap = Sensor::whereIn('name', $params->getSensors())->lists('name', 'id');
 		foreach($params->getSensors() as $sensor) {
 			if(!in_array($sensor, $this->sensorMap))
-				throw new ReporterException('Invalid sensor name of "' . $sensor . '"!');
+				throw new ReporterException('Invalid sensor name of "' . json_encode($sensor) . '"!');
 		}
 
 		$base = $this->buildBaseTable();
