@@ -56,7 +56,7 @@ Route::delete('Gateways/Delete/{id}', ['as' => 'gateways.delete', 'middleware' =
  | Routes for dealing with Alerts.
  |
  */
-Route::get('Sensors', ['as' => 'sensors.all', 'middleware' => 'auth', 'permissions' => 'super admin', 'uses' => 'SensorsController@all']);
+Route::get('Sensors', ['as' => 'sensors.all', /*'middleware' => 'auth', */'uses' => 'SensorsController@all']);
 Route::post('Sensors/Create', ['as' => 'sensors.create', 'middleware' => 'auth', 'permissions' => 'super admin', 'uses' => 'SensorsController@store']);
 Route::get('Sensors/{id}', ['as' => 'sensors.get', 'middleware' => 'auth', 'permissions' => 'super admin', 'uses' => 'SensorsController@show']);
 Route::put('Sensors/Edit/{id}', ['as' => 'sensors.edit', 'middleware' => 'auth', 'permissions' => 'super admin', 'uses' => 'SensorsController@update']);
@@ -95,6 +95,6 @@ Route::post('Alerts/Subscriptions/Subscribe', ['as' => 'alerts.subscriptions.sub
  | Routes for querying the database for sensor information.
  |
  */
-Route::any('Reporting/Custom', ['as' => 'reporting.custom', 'middleware' => 'auth', 'uses' => 'ReportingController@custom']);
+Route::any('Reporting/Custom', ['as' => 'reporting.custom', /*'middleware' => 'auth',*/ 'uses' => 'ReportingController@custom']);
 Route::any('Reporting/Recent', ['as' => 'reporting.most_recent', 'uses' => 'ReportingController@mostRecent']);
 Route::get('Reporting/Query/{id}', ['as' => 'reporting.single', 'uses' => 'ReportingController@single']);

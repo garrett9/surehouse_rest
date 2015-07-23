@@ -170,7 +170,7 @@ abstract class Controller extends BaseController {
 		$result = ['result' => $result, 'status' => $status];
 		if(is_string($message))
 			$result['message'] = $message;
-		if($payload)
+		if($payload || is_array($payload))
 			$result['payload'] = $payload;
 		
 		$response = response()->json($result, $status);
