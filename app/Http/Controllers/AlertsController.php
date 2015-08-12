@@ -27,7 +27,6 @@ class AlertsController extends Controller {
 									 ->get();
 		if($alerts)
 			return self::ok(null, $alerts);
-		return self::no_content(null, $alerts);
 	}
 	
 	/**

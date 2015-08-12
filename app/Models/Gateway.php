@@ -17,7 +17,7 @@ class Gateway extends Ardent {
 	 */
 	public static $rules = array(
 			'name' => 'required|unique:gateways,name',
-			'IP' => 'required',
+			'IP' => 'required|ip',
 			'port' => 'required|integer|min:1|max:65535',
 			'type' => 'required|in:eGuage,WEL'
 	);

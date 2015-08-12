@@ -34,5 +34,5 @@ return [
 		 | current address of the system to display it on the web application.
 		 |
 		 */
-		'address' => env('address', '')
+		'address' => env('address', '1 Castle Point Terrace, Hoboken, NJ 07030')
 ];

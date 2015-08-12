@@ -20,10 +20,7 @@ class GatewaysController extends Controller {
 	 */
 	public function all()
 	{
-		$gateways = Gateway::all();
-		if(!$gateways->isEmpty())
-			return self::ok(null, $gateways);
-		return self::no_content();
+		return self::ok(null, Gateway::all());
 	}
 	
 	/**

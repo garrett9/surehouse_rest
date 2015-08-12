@@ -55,10 +55,6 @@ class Authenticate {
 		$request->merge(['user' => $user]);
 		$response = $next($request);
 		
-		//$newToken = $jwt->refresh();
-		//$response->header('X-Token', $newToken);
-		//$response->header('Access-Control-Expose-Headers', 'X-Token');
-		
 		return $response;
 	}
 
