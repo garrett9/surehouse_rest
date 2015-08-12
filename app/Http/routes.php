@@ -91,6 +91,34 @@ Route::post('Users/ResetPassword/{token}', [
     'as' => 'users.password_reset',
     'uses' => 'UsersController@resetPassword'
 ]);
+
+/*
+ * |--------------------------------------------------------------------------
+ * | Settings Routes
+ * |--------------------------------------------------------------------------
+ * |
+ * | Routes for dealing with saving settings for the application.
+ * |
+ */
+// Set the status of the dashboard (sustainable/resileint) by providing a boolean (true = resileint, false = sustainable)
+Route::get('Settings/ResilientMode/{boolean}', [
+    'middleware' => 'auth',
+    'permissions' => 'super admin',
+    'uses' => 'SettingsController@setResilientMode'
+]);
+
+// Set the address of the home
+Route::post('Settings/Address', [
+    'middleware' => 'auth',
+    'permissions' => 'super admin',
+    'uses' => 'SettingsController@setAddress'
+]);
+
+// Get the settings of the application
+Route::get('Settings', [
+    'uses' => 'SettingsController@getSettings'
+]);
+
 /*
  * |--------------------------------------------------------------------------
  * | Gateways Routes

@@ -1,18 +1,18 @@
 <?php
-return [ 
-		
-	/*
-	|--------------------------------------------------------------------------
-	| Application Debug Mode
-	|--------------------------------------------------------------------------
-	|
-	| When your application is in debug mode, detailed error messages with
-	| stack traces will be shown on every error that occurs within your
-	| application. If disabled, a simple generic error page is shown.
-	|
-	*/
-		
-	'debug' => env ( 'APP_DEBUG', true ),
+return [
+    
+    /*
+     * |--------------------------------------------------------------------------
+     * | Application Debug Mode
+     * |--------------------------------------------------------------------------
+     * |
+     * | When your application is in debug mode, detailed error messages with
+     * | stack traces will be shown on every error that occurs within your
+     * | application. If disabled, a simple generic error page is shown.
+     * |
+     */
+    
+    'debug' => env('APP_DEBUG', true),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -77,9 +77,9 @@ return [
 	|
 	*/
 
-	'key' => env ( 'APP_KEY' ),
-		
-	'cipher' => MCRYPT_RIJNDAEL_128,
+	'key' => env('APP_KEY'),
+    
+    'cipher' => MCRYPT_RIJNDAEL_128,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -107,50 +107,51 @@ return [
 	|
 	*/
 
-	'providers' => [ 
-				
-				/*
-				 * Laravel Framework Service Providers...
-				 */
-				'Illuminate\Foundation\Providers\ArtisanServiceProvider',
-				'Illuminate\Auth\AuthServiceProvider',
-				'Illuminate\Bus\BusServiceProvider',
-				'Illuminate\Cache\CacheServiceProvider',
-				'Illuminate\Foundation\Providers\ConsoleSupportServiceProvider',
-				'Illuminate\Routing\ControllerServiceProvider',
-				'Illuminate\Cookie\CookieServiceProvider',
-				'Illuminate\Database\DatabaseServiceProvider',
-				'Illuminate\Encryption\EncryptionServiceProvider',
-				'Illuminate\Filesystem\FilesystemServiceProvider',
-				'Illuminate\Foundation\Providers\FoundationServiceProvider',
-				'Illuminate\Hashing\HashServiceProvider',
-				'Illuminate\Mail\MailServiceProvider',
-				'Illuminate\Pagination\PaginationServiceProvider',
-				'Illuminate\Pipeline\PipelineServiceProvider',
-				'Illuminate\Queue\QueueServiceProvider',
-				'Illuminate\Redis\RedisServiceProvider',
-				'Illuminate\Auth\Passwords\PasswordResetServiceProvider',
-				'Illuminate\Session\SessionServiceProvider',
-				'Illuminate\Translation\TranslationServiceProvider',
-				'Illuminate\Validation\ValidationServiceProvider',
-				'Illuminate\View\ViewServiceProvider',
+	'providers' => [
+        
+        /*
+         * Laravel Framework Service Providers...
+         */
+        'Illuminate\Foundation\Providers\ArtisanServiceProvider',
+        'Illuminate\Auth\AuthServiceProvider',
+        'Illuminate\Bus\BusServiceProvider',
+        'Illuminate\Cache\CacheServiceProvider',
+        'Illuminate\Foundation\Providers\ConsoleSupportServiceProvider',
+        'Illuminate\Routing\ControllerServiceProvider',
+        'Illuminate\Cookie\CookieServiceProvider',
+        'Illuminate\Database\DatabaseServiceProvider',
+        'Illuminate\Encryption\EncryptionServiceProvider',
+        'Illuminate\Filesystem\FilesystemServiceProvider',
+        'Illuminate\Foundation\Providers\FoundationServiceProvider',
+        'Illuminate\Hashing\HashServiceProvider',
+        'Illuminate\Mail\MailServiceProvider',
+        'Illuminate\Pagination\PaginationServiceProvider',
+        'Illuminate\Pipeline\PipelineServiceProvider',
+        'Illuminate\Queue\QueueServiceProvider',
+        'Illuminate\Redis\RedisServiceProvider',
+        'Illuminate\Auth\Passwords\PasswordResetServiceProvider',
+        'Illuminate\Session\SessionServiceProvider',
+        'Illuminate\Translation\TranslationServiceProvider',
+        'Illuminate\Validation\ValidationServiceProvider',
+        'Illuminate\View\ViewServiceProvider',
 
 				/*
 				 * Application Service Providers...
 				 */
-				'App\Providers\AppServiceProvider',
-				'App\Providers\BusServiceProvider',
-				'App\Providers\ConfigServiceProvider',
-				'App\Providers\EventServiceProvider',
-				'App\Providers\RouteServiceProvider',
+		'App\Providers\AppServiceProvider',
+        'App\Providers\BusServiceProvider',
+        'App\Providers\ConfigServiceProvider',
+        'App\Providers\EventServiceProvider',
+        'App\Providers\RouteServiceProvider',
 				
 				/*
-				 * Custom Service Providers...
+				 * Third Party Service Providers...
 				 */
-				'Barryvdh\Cors\CorsServiceProvider',
-				'Tymon\JWTAuth\Providers\JWTAuthServiceProvider'
-
-	],
+		'Barryvdh\Cors\CorsServiceProvider',
+        'Tymon\JWTAuth\Providers\JWTAuthServiceProvider',
+        'Thetispro\Setting\SettingServiceProvider',
+    ]
+    ,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -163,42 +164,42 @@ return [
 	|
 	*/
 
-	'aliases' => [ 
-				
-				'App' => 'Illuminate\Support\Facades\App',
-				'Artisan' => 'Illuminate\Support\Facades\Artisan',
-				'Auth' => 'Illuminate\Support\Facades\Auth',
-				'Blade' => 'Illuminate\Support\Facades\Blade',
-				'Bus' => 'Illuminate\Support\Facades\Bus',
-				'Cache' => 'Illuminate\Support\Facades\Cache',
-				'Config' => 'Illuminate\Support\Facades\Config',
-				'Cookie' => 'Illuminate\Support\Facades\Cookie',
-				'Crypt' => 'Illuminate\Support\Facades\Crypt',
-				'DB' => 'Illuminate\Support\Facades\DB',
-				'Eloquent' => 'Illuminate\Database\Eloquent\Model',
-				'Event' => 'Illuminate\Support\Facades\Event',
-				'File' => 'Illuminate\Support\Facades\File',
-				'Hash' => 'Illuminate\Support\Facades\Hash',
-				'Input' => 'Illuminate\Support\Facades\Input',
-				'Inspiring' => 'Illuminate\Foundation\Inspiring',
-				'JWTAuth' => 'Tymon\JWTAuth\Facades\JWTAuth',
-				'Lang' => 'Illuminate\Support\Facades\Lang',
-				'Log' => 'Illuminate\Support\Facades\Log',
-				'Mail' => 'Illuminate\Support\Facades\Mail',
-				'Password' => 'Illuminate\Support\Facades\Password',
-				'Queue' => 'Illuminate\Support\Facades\Queue',
-				'Redirect' => 'Illuminate\Support\Facades\Redirect',
-				'Redis' => 'Illuminate\Support\Facades\Redis',
-				'Request' => 'Illuminate\Support\Facades\Request',
-				'Response' => 'Illuminate\Support\Facades\Response',
-				'Route' => 'Illuminate\Support\Facades\Route',
-				'Schema' => 'Illuminate\Support\Facades\Schema',
-				'Session' => 'Illuminate\Support\Facades\Session',
-				'Storage' => 'Illuminate\Support\Facades\Storage',
-				'URL' => 'Illuminate\Support\Facades\URL',
-				'Validator' => 'Illuminate\Support\Facades\Validator',
-				'View' => 'Illuminate\Support\Facades\View' 
-		]
-		 
+	'aliases' => [
+        
+        'App' => 'Illuminate\Support\Facades\App',
+        'Artisan' => 'Illuminate\Support\Facades\Artisan',
+        'Auth' => 'Illuminate\Support\Facades\Auth',
+        'Blade' => 'Illuminate\Support\Facades\Blade',
+        'Bus' => 'Illuminate\Support\Facades\Bus',
+        'Cache' => 'Illuminate\Support\Facades\Cache',
+        'Config' => 'Illuminate\Support\Facades\Config',
+        'Cookie' => 'Illuminate\Support\Facades\Cookie',
+        'Crypt' => 'Illuminate\Support\Facades\Crypt',
+        'DB' => 'Illuminate\Support\Facades\DB',
+        'Eloquent' => 'Illuminate\Database\Eloquent\Model',
+        'Event' => 'Illuminate\Support\Facades\Event',
+        'File' => 'Illuminate\Support\Facades\File',
+        'Hash' => 'Illuminate\Support\Facades\Hash',
+        'Input' => 'Illuminate\Support\Facades\Input',
+        'Inspiring' => 'Illuminate\Foundation\Inspiring',
+        'JWTAuth' => 'Tymon\JWTAuth\Facades\JWTAuth',
+        'Lang' => 'Illuminate\Support\Facades\Lang',
+        'Log' => 'Illuminate\Support\Facades\Log',
+        'Mail' => 'Illuminate\Support\Facades\Mail',
+        'Password' => 'Illuminate\Support\Facades\Password',
+        'Queue' => 'Illuminate\Support\Facades\Queue',
+        'Redirect' => 'Illuminate\Support\Facades\Redirect',
+        'Redis' => 'Illuminate\Support\Facades\Redis',
+        'Request' => 'Illuminate\Support\Facades\Request',
+        'Response' => 'Illuminate\Support\Facades\Response',
+        'Route' => 'Illuminate\Support\Facades\Route',
+        'Schema' => 'Illuminate\Support\Facades\Schema',
+	    'Setting' => 'Thetispro\Setting\Facades\Setting',
+        'Session' => 'Illuminate\Support\Facades\Session',
+        'Storage' => 'Illuminate\Support\Facades\Storage',
+        'URL' => 'Illuminate\Support\Facades\URL',
+        'Validator' => 'Illuminate\Support\Facades\Validator',
+        'View' => 'Illuminate\Support\Facades\View'
+    ]
 ]
 ;

@@ -10,8 +10,10 @@ return [
 		 | alerts if they created. However, you can manually turn on resilient
 		 | mode to see the difference in the web application.
 		 |
+		 | (0 = false, 1 = true)
+		 |
 		 */
-		'resilient_mode' => env('resilient_mode', false),
+		'resilient_mode' => env('resilient_mode', 0),
 		
 		/*
 		 |--------------------------------------------------------------------------
