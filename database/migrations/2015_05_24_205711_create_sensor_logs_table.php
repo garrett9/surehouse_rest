@@ -19,7 +19,7 @@ class CreateSensorLogsTable extends Migration {
 			$table->integer('value');
 			
 			$table->primary(['id', 'timestamp']);
-			$table->foreign('id')->references('id')->on('sensors');
+			$table->foreign('id')->references('id')->on('sensors')->onDelete('CASCADE');
 		});
 	}
 

@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('UsersTableSeeder');
 		$this->call('GatewaysTableSeeder');
-		$this->call('SensorTableSeeder');
+		//$this->call('SensorTableSeeder');
 	}
 
 }

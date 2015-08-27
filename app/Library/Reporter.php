@@ -44,12 +44,17 @@ class Reporter {
 		$this->errors = [];
 		$this->params = $params;
 		
-		$this->sensorMap = Sensor::whereIn('name', $params->getSensors())->lists('name', 'id');
+		$sensors = Sensor::whereIn('name', $params->getSensors())->get();
+		$sensorNames = $sensors->lists('name');
 		foreach($params->getSensors() as $sensor) {
-			if(!in_array($sensor, $this->sensorMap))
-				throw new ReporterException('Invalid sensor name of "' . json_encode($sensor) . '"!');
+		    if(!in_array($sensor, $sensorNames))
+		        throw new ReporterException('Invalid sensor name of "' . json_encode($sensor) . '"!');
 		}
 
+		$unitsMap = $sensors->lists('units', 'id');
+		$this->sensorMap = $sensors->lists('display_name', 'id');
+
+		
 		$base = $this->buildBaseTable();
 		$this->qry = DB::table(DB::raw('(' . $base->toSql() . ') Main'));
 		if($this->params->getAggregate()) {
@@ -68,7 +73,7 @@ class Reporter {
 					($params->getAggregate()) ? $name . '.Time' : DB::raw(1),
 					'=',
 					($params->getAggregate()) ? 'Main.Time' : DB::raw(1));
-			$this->qry->addSelect(DB::raw($name . '.value as `' . $name . '`'));
+			$this->qry->addSelect(DB::raw($name . '.value as `' . $name . '.' . $unitsMap[$id] . '`'));
 		}
 	}
 	

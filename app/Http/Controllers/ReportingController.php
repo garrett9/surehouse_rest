@@ -13,17 +13,7 @@ use App\Library\ReporterException;
  *
  */
 class ReportingController extends Controller {
-	
-	/**
-	 * Perform a query on a single sensor.
-	 * GET /Reporting/Query/{id}
-	 * 
-	 * @param string $identifier Either the sensor ID or configured name.
-	 */
-	public function single($name) {
-		//$data = Sensor::where();
-	}
-	
+
 	/**
 	 * Query the most recent number of rows for 
 	 */
@@ -57,6 +47,9 @@ class ReportingController extends Controller {
 	 * @return Response
 	 */
 	public function custom() {
+	    if(!Input::has('sensors') || !is_array(Input::get('sensors')))
+	        return self::bad_request('The "sensors" field is a required array of sensors to query!');
+	    
 		return $this->query(new QueryParams(Input::all()));
 	}
 	
@@ -67,12 +60,6 @@ class ReportingController extends Controller {
 	 * @return Response
 	 */
 	public function query(QueryParams $params) {
-		if(!Input::has('sensors') || !is_array(Input::get('sensors')))
-			return self::bad_request('The "sensors" field is a required array of sensors to query!');
-		
-		//if(count(Input::get('sensors')) == 1)
-		//	return $this->single(Input::get('sensors')[0]);
-		
 		try {
 			$reporter = new Reporter($params);
 			return self::ok(null, $reporter->get());

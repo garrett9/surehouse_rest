@@ -40,12 +40,11 @@ class SeedSensorLogs extends Command {
 	public function fire()
 	{
 		//First, get the sensor given.
-		if($sensor = Sensor::find($this->argument('id'))) {
+		if($sensor = Sensor::where('name', '=', $this->argument('name'))->first()) {
 			$this->info("Retrieved the following Data Point:\n\n" .
 						"Name:\t\t\t" . $sensor->name . "\n" .
 						"Display Name:\t\t" . $sensor->display_name . "\n" .
-						"Unit Type:\t\t" . $sensor->units . "\n" .
-						"Recorder:\t\t" . $sensor->recorder);
+						"Unit Type:\t\t" . $sensor->units);
 			$rows = ($this->option('rows') && is_numeric($this->option('rows'))) ? $this->option('rows') : 100;
 			$min = ($this->option('min') && is_numeric($this->option('min'))) ? $this->option('min') : 0;
 			$max = ($this->option('max') && is_numeric($this->option('max'))) ? $this->option('max') : 100;
@@ -56,7 +55,7 @@ class SeedSensorLogs extends Command {
 					$rand = rand($min - 1, $max - 1);
 					array_push($logs,
 						[
-							'id' => $this->argument('id'),
+							'id' => $sensor->id,
 							'timestamp' => date('Y-m-d H:i:s', $time),
 							'value' => $rand
 						]
@@ -71,7 +70,7 @@ class SeedSensorLogs extends Command {
 				$this->info('Command Terminated.');
 		}
 		else {
-			$this->error('There exists no sensor with an ID of ' . $this->argument('id'));
+			$this->error('There exists no sensor with a name of "' . $this->argument('name') . '".');
 		}
 	}
 
@@ -83,7 +82,7 @@ class SeedSensorLogs extends Command {
 	protected function getArguments()
 	{
 		return array(
-			array('id', InputArgument::REQUIRED, 'The Data Point ID to create random logs for.'),
+			array('name', InputArgument::REQUIRED, 'The Data Point ID to create random logs for.'),
 		);
 	}
 

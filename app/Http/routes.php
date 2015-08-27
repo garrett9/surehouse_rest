@@ -1,14 +1,8 @@
 <?php
-
-/*
- * |--------------------------------------------------------------------------
- * | Application Routes
- * |--------------------------------------------------------------------------
- * |
- * | Here is where you can register all of the routes for an application.
- * | It's a breeze. Simply tell Laravel the URIs it should respond to
- * | and give it the controller to call when that URI is requested.
- * |
+/**
+ * All of the URL routes defined for the application.
+ * 
+ * @author garrettshevach@gmail.com
  */
 
 /*
@@ -127,6 +121,7 @@ Route::get('Settings', [
  * | Routes for dealing with Alerts.
  * |
  */
+// Get all gateways in the system
 Route::get('Gateways', [
     'as' => 'gateways.all',
     'middleware' => 'auth',
@@ -134,6 +129,7 @@ Route::get('Gateways', [
     'uses' => 'GatewaysController@all'
 ]);
 
+// Ping a gateway device to see if it is active
 Route::post('Gateways/Ping', [
     'as' => 'gateways.ping',
     'middleware' => 'auth',
@@ -141,6 +137,7 @@ Route::post('Gateways/Ping', [
     'uses' => 'GatewaysController@ping'
 ]);
 
+// Create a gateway
 Route::post('Gateways/Create', [
     'as' => 'gateways.create',
     'middleware' => 'auth',
@@ -148,6 +145,7 @@ Route::post('Gateways/Create', [
     'uses' => 'GatewaysController@store'
 ]);
 
+// Get a gateway
 Route::get('Gateways/{id}', [
     'as' => 'gateways.get',
     'middleware' => 'auth',
@@ -155,6 +153,7 @@ Route::get('Gateways/{id}', [
     'uses' => 'GatewaysController@show'
 ]);
 
+// Modify a gateway
 Route::put('Gateways/Edit/{id}', [
     'as' => 'gateways.edit',
     'middleware' => 'auth',
@@ -162,6 +161,7 @@ Route::put('Gateways/Edit/{id}', [
     'uses' => 'GatewaysController@update'
 ]);
 
+// Delete a gateway
 Route::delete('Gateways/Delete/{id}', [
     'as' => 'gateways.delete',
     'middleware' => 'auth',
@@ -177,10 +177,12 @@ Route::delete('Gateways/Delete/{id}', [
  * | Routes for dealing with Alerts.
  * |
  */
+// Get all of the sensors
 Route::get('Sensors', [
     'as' => 'sensors.all', /*'middleware' => 'auth', */'uses' => 'SensorsController@all'
 ]);
 
+// Create a sensor
 Route::post('Sensors/Create', [
     'as' => 'sensors.create',
     'middleware' => 'auth',
@@ -188,6 +190,7 @@ Route::post('Sensors/Create', [
     'uses' => 'SensorsController@store'
 ]);
 
+// Get a sensor
 Route::get('Sensors/{id}', [
     'as' => 'sensors.get',
     'middleware' => 'auth',
@@ -195,6 +198,7 @@ Route::get('Sensors/{id}', [
     'uses' => 'SensorsController@show'
 ]);
 
+// Modify a sensor
 Route::put('Sensors/Edit/{id}', [
     'as' => 'sensors.edit',
     'middleware' => 'auth',
@@ -202,6 +206,7 @@ Route::put('Sensors/Edit/{id}', [
     'uses' => 'SensorsController@update'
 ]);
 
+// Delete a sensor
 Route::delete('Sensors/Delete/{id}', [
     'as' => 'sensors.delete',
     'middleware' => 'auth',
@@ -217,6 +222,7 @@ Route::delete('Sensors/Delete/{id}', [
  * | Routes for dealing with Alerts.
  * |
  */
+// Get all of the alerts in the system
 Route::get('Alerts', [
     'as' => 'alerts.all',
     'middleware' => 'auth',
@@ -224,6 +230,13 @@ Route::get('Alerts', [
     'uses' => 'AlertsController@all'
 ]);
 
+// Get all activated routes
+Route::get('Alerts/Activated', [
+    'as' => 'alerts.activated',
+    'uses' => 'AlertsController@activated' 
+]);
+
+// Create an alert
 Route::post('Alerts/Create', [
     'as' => 'alerts.create',
     'middleware' => 'auth',
@@ -231,6 +244,7 @@ Route::post('Alerts/Create', [
     'uses' => 'AlertsController@store'
 ]);
 
+// Get an alert
 Route::get('Alerts/{id}', [
     'as' => 'alerts.get',
     'middleware' => 'auth',
@@ -238,6 +252,7 @@ Route::get('Alerts/{id}', [
     'uses' => 'AlertsController@show'
 ]);
 
+// Modify an alert
 Route::put('Alerts/Edit/{id}', [
     'as' => 'alerts.edit',
     'middleware' => 'auth',
@@ -245,6 +260,7 @@ Route::put('Alerts/Edit/{id}', [
     'uses' => 'AlertsController@update'
 ]);
 
+// Delete an alert
 Route::delete('Alerts/Delete/{id}', [
     'as' => 'alerts.delete',
     'middleware' => 'auth',
@@ -259,18 +275,24 @@ Route::delete('Alerts/Delete/{id}', [
  * |
  * | Routes for dealing with Alert Subscriptions.
  * |
+ * | NOTE: Alert subscriptions were thrown out. With a lack of internet connection, they really weren't worth the time to implement all the way.
+ * |       Additionally, since you don't need to login anymore to see data, they didn't really make sense anymore.
+ * |       Instead, all active alerts will be displayed to everyone.
+ * |
  */
+/* // Get all alert subscriptions for the current user
 Route::get('Alerts/Subscriptions/All', [
     'as' => 'alerts.subscriptions',
     'middleware' => 'auth',
     'uses' => 'AlertSubscriptionsController@all'
 ]);
 
+// Subscrive to an alert for the current user
 Route::post('Alerts/Subscriptions/Subscribe', [
     'as' => 'alerts.subscriptions.subscribe',
     'middleware' => 'auth',
     'uses' => 'AlertSubscriptionsController@subscribeMultiple'
-]);
+]); */
 
 /*
  * |--------------------------------------------------------------------------
@@ -280,16 +302,13 @@ Route::post('Alerts/Subscriptions/Subscribe', [
  * | Routes for querying the database for sensor information.
  * |
  */
+// Perform a custom query
 Route::any('Reporting/Custom', [
     'as' => 'reporting.custom', /*'middleware' => 'auth',*/ 'uses' => 'ReportingController@custom'
 ]);
 
+// Perform a most recent query
 Route::any('Reporting/Recent', [
     'as' => 'reporting.most_recent',
     'uses' => 'ReportingController@mostRecent'
-]);
-
-Route::get('Reporting/Query/{id}', [
-    'as' => 'reporting.single',
-    'uses' => 'ReportingController@single'
 ]);

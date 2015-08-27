@@ -23,10 +23,24 @@ class AlertsController extends Controller {
 	{
 		//Get all users and pass them to the view
 		$alerts = DB::table('alerts')->join('sensors', 'sensors.id', '=', 'alerts.sensor')
-									 ->select('alerts.name', 'sensors.name as sensor', 'alerts.id', 'alerts.operation', 'alerts.value', 'alerts.timespan')
+									 ->select('alerts.name', 'sensors.name as sensor', 'alerts.id', 'alerts.operation', 'alerts.value', 'alerts.timespan', 'alerts.active')
 									 ->get();
-		if($alerts)
-			return self::ok(null, $alerts);
+		return self::ok(null, $alerts);
+	}
+	
+	/**
+	 * Displays all activated alerts.
+	 * GET /Alerts
+	 * 
+	 * @return Response
+	 */
+	public function activated() {
+	    $alerts = DB::table('alerts')->join('sensors', 'sensors.id', '=', 'alerts.sensor')
+	                                 ->select('alerts.name', 'sensors.display_name as sensor_name', 'sensors.units as sensor_units', 'alerts.operation', 'alerts.value', 'alerts.timespan', 'alerts.resilient_trigger', 'alerts.updated_at')
+	                                 ->where('alerts.activated', '=', true)
+	                                 ->where('alerts.active', '=', true)
+	                                 ->get();
+	    return self::ok(null, $alerts);
 	}
 	
 	/**
@@ -87,7 +101,6 @@ class AlertsController extends Controller {
 			$alert->value = Input::get('value');
 			$alert->timespan = Input::get('timespan');
 			$alert->resilient_trigger = (Input::get('resilient_trigger')) ? true : false;
-			$alert->active = (Input::get('active')) ? true : false;
 			//Attempt to save the model's data.
 			if(!$alert->updateUniques())
 				return self::bad_request(null, $alert->errors());
