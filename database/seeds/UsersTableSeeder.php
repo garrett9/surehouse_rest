@@ -9,20 +9,13 @@ class UsersTableSeeder extends Seeder {
         DB::table('users')->delete();
 
        	$users = [
-       			[
-       					'name' => 'admin',
-       					'email' => 'test@test.com',
-       					'permission' => 'super admin',
-       					'password' => Hash::make('solard2015'),
-       					'active' => true
-       			],
-       			[
-       					'name' => 'admin_api',
-       					'email' => 'test@test.com1',
-       					'permission' => 'admin',
-       					'password' => Hash::make('admin_api_password_12'),
-       					'active' => true
-       			]
+       	        [
+       	            'name' => 'test_user',
+       	            'email' => 'test@test.com',
+       	            'permission' => 'admin',
+       	            'password' => Hash::make('Testing123'),
+       	            'active' => true
+       	        ]
        	];
        	
        	foreach($users as $user)
